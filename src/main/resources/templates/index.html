@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>imcode 的博客 - 首页</title>
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/css/common.css" rel="stylesheet"/>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/plugin/layer/layer.js"></script>
+    <script src="/plugin/art-template/art-template.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <!--顶部导航栏-->
+    <div class="row cb-header">
+        <script>$('.cb-header').load('./common_nav.html');</script>
+    </div>
+    <div class="row new_blog">
+        <div class="container">
+            <!--左侧内容区域-->
+            <div class="col-sm-8 col-md-9 blog_left">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">最新发布</h3>
+                    </div>
+
+                    <div class="panel-body indexData"></div>
+
+                    <div class="panel-footer bot_load_end" style="display: none">
+                        <h3 class="panel-title text-center">没有更多了...</h3>
+                    </div>
+                </div>
+            </div>
+            <!--右侧区域-->
+            <div class="col-sm-4 col-md-3 blog_right">
+                <!--标签-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">热门标签</h3>
+                    </div>
+                    <div class="panel-body cloud">
+                        <span class="label label-primary">Linux</span>
+                        <span class="label label-warning">php</span>
+                        <span class="label label-info">jQuery</span>
+                        <span class="label label-primary">tp</span>
+                        <span class="label label-default">css</span>
+                        <span class="label label-danger">JavaScript</span>
+                    </div>
+                </div>
+
+                <!--热门专题-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">热门专题</h3>
+                    </div>
+
+                    <div class="list-group">
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> Spring Cloud 从入门到精通
+                        </a>
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> Spring Boot
+                        </a>
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> 微服务
+                        </a>
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> SpringMVC专题
+                        </a>
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> Spring Cloud 从入门到精通
+                        </a>
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> Spring Boot
+                        </a>
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> 微服务
+                        </a>
+                        <a href="index/article/info/id/4.html" target="_blank" class="list-group-item">
+                            <span class="glyphicon glyphicon-menu-right"> </span> SpringMVC专题
+                        </a>
+                    </div>
+                </div>
+
+                <!--热门文章-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">热门文章</h3>
+                    </div>
+                    <div class="list-group">
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-10-09 ">Linux常用命令</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-11-08 ">Centos下搭建php环境</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-07-03 ">Linux下部署php+apache</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2019-01-28 ">经典的PHP加密解密算法</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-10-09 ">JavaScript将base64图片转换成formData</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-10-09 ">JS上传图片实时预览</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-04-11 ">jQuery获取随机数</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-10-09 ">JavaScript获取随机字符串</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-04-11 ">CSS超出部分显示省略号</a>
+                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-04-28 ">php常用的字符串相关函数</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="run_top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+</div>
+
+<!--用于存放模版-->
+<script id="template" type="text/html">
+    <div>
+        {{each $data item index}}
+        <div class="panel panel-default new_list">
+            <div class="panel-body">
+                <blockquote>
+                    <a href="/toDetail?id={{item.id}}">{{item.title}}</a>
+                </blockquote>
+                <div class="col-xs-12 col-sm-12 col-md-12 r">
+                    <div class="panel-body title">
+                        {{item.content}}
+                    </div>
+                    <div class="panel-body bot">
+                        <div class="col-sm-7 col-md-8">
+                            <span class="glyphicon glyphicon-time" title="发布时间"></span> {{item.create_time}}&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-th-list" title="分类"></span> {{item.special}}&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-tags" title="标签"></span> {{item.tag}}&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-user" title="作者"></span> {{item.author}}
+                        </div>
+                        <div class="col-sm-5 col-md-4">
+                            <span class="glyphicon glyphicon-comment" title="评论"></span> {{item.comments}}&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-eye-open" title="阅读"></span> {{item.pageview}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+
+<!--用于渲染模版-->
+<script>
+    var pageNum = 1;
+    var load = function () {
+        $.get('getArticles', {
+            pageNum: pageNum
+        }, function (data) {
+            if (data.length > 0) {
+                pageNum++;
+                var html = template('template', data);
+                $(".indexData").append(html);
+            } else {
+                $(".bot_load_end").show();
+                $(document).scrollTop($(document).height() - $(window).height());
+            }
+        });
+    };
+    // 加载第一页数据
+    load();
+</script>
+
+<script>
+    // 绑定返回顶部事件
+    $("#run_top").click(function () {
+        $('html,body').animate({
+            scrollTop: '0px'
+        }, 300);
+    });
+    // 绑定滚动条事件
+    $(window).scroll(function () {
+        var h = $(document.body).height(); //网页文档的高度
+        var c = $(document).scrollTop(); //滚动条距离网页顶部的高度
+        var wh = $(window).height(); //页面可视化区域高度
+
+        // 当滚动条距离网页的顶部的距离大于等于500px时，显示返回顶部按钮
+        if (c >= 500) {
+            $("#run_top").show();
+        } else {
+            $("#run_top").hide();
+        }
+        if (Math.ceil(wh + c) >= h) {
+            load();
+        }
+    });
+</script>
+</body>
+</html>

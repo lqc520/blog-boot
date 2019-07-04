@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>imcode 的博客 - 文章详情</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="plugin/editormd/css/editormd.preview.css"/>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+
+    <style>
+        .editormd-preview-container, .editormd-html-preview {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+
+    <!--顶部导航栏-->
+    <div class="row cb-header">
+        <script>$('.cb-header').load('./common_nav.html');</script>
+    </div>
+
+    <div class="row new_blog">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="col-sm-8 col-md-9 blog_left">
+                    <div class="panel panel-default blog_info">
+                        <div class="panel-body">
+                            <h3 style="margin-top: 5px;">${article.title}</h3>
+                            <div class="user_info">
+                                <div class="l"><img src="${article.avatar!''}"></div>
+                                <div class="col-xs-8 col-sm-8 col-md-10 r">
+                                    <div class="">
+                                        <div class="t">${article.author}</div>
+                                        <div class="b">
+                                            ${article.create_time} &nbsp;&nbsp;
+                                            <span class="glyphicon glyphicon-tags" title="标签"></span> &nbsp;${article.tag} &nbsp;&nbsp;
+                                            <span class="glyphicon glyphicon-th" title="分类"></span> ${article.special} &nbsp;&nbsp;
+                                            <span class="glyphicon glyphicon-eye-open" title="阅读量"></span> 65 &nbsp;&nbsp;
+                                            <span class="glyphicon glyphicon-comment" title="评论数"></span> 0
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="article_info">
+                                <div id="mainBody" style="overflow:initial;">
+
+<textarea id="append-test" style="display:none;">${article.content}</textarea>
+
+                                </div>
+                            </div>
+
+                            <div class="text-with-hr">
+                                <span>附件</span>
+                            </div>
+
+                            <blockquote style="font-weight:initial;border-left: 5px solid #eee;">
+                                <mark style="font-size: 13px;">
+                                    <a href="${article.attachment!''}" target="_blank">附件下载</a> <br>
+                                </mark>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <!--评论区-->
+                    <div class="commentMain" id="commentMain"></div>
+                </div>
+                <div class="col-sm-4 col-md-3 blog_right">
+                    <!-- 热门推荐 -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">热门推荐</h3>
+                        </div>
+                        <div class="list-group">
+                            <a href="index/article/info/id/4.html" target="_blank" class="list-group-item"
+                               title="发布时间：2017-10-09 ">Linux常用命令</a>
+                            <a href="index/article/info/id/5.html" target="_blank" class="list-group-item"
+                               title="发布时间：2017-11-08 ">Centos下搭建php环境</a>
+                            <a href="index/article/info/id/15.html" target="_blank" class="list-group-item"
+                               title="发布时间：2018-07-03 ">Linux下部署php+apache</a>
+                            <a href="index/article/info/id/23.html" target="_blank" class="list-group-item"
+                               title="发布时间：2019-01-28 ">经典的PHP加密解密算法</a>
+                            <a href="index/article/info/id/2.html" target="_blank" class="list-group-item"
+                               title="发布时间：2017-10-09 ">JavaScript将base64图片转换成formData</a>
+                            <a href="index/article/info/id/3.html" target="_blank" class="list-group-item"
+                               title="发布时间：2017-10-09 ">JS上传图片实时预览</a>
+                            <a href="index/article/info/id/8.html" target="_blank" class="list-group-item"
+                               title="发布时间：2018-04-11 ">jQuery获取随机数</a>
+                            <a href="index/article/info/id/1.html" target="_blank" class="list-group-item"
+                               title="发布时间：2017-10-09 ">JavaScript获取随机字符串</a>
+                            <a href="index/article/info/id/7.html" target="_blank" class="list-group-item"
+                               title="发布时间：2018-04-11 ">CSS超出部分显示省略号</a>
+                            <a href="index/article/info/id/11.html" target="_blank" class="list-group-item"
+                               title="发布时间：2018-04-28 ">php常用的字符串相关函数</a>
+                        </div>
+                    </div>
+                    <!-- 标签 -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">标签</h3>
+                        </div>
+                        <div class="panel-body cloud">
+                            <span class="label label-info">Linux</span>
+                            <span class="label label-danger">php</span>
+                            <span class="label label-danger">jQuery</span>
+                            <span class="label label-warning">tp</span>
+                            <span class="label label-primary">css</span>
+                            <span class="label label-info">JavaScript</span>
+                            <span class="label label-primary">Windows10</span>
+                            <span class="label label-success">java</span>
+                            <span class="label label-default">Markdown</span>
+                            <span class="label label-primary">数组</span>
+                            <span class="label label-danger">js上传图片预览</span>
+                        </div>
+                    </div>
+                    <!-- 最近访客 -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">最近访客</h3>
+                        </div>
+                        <div class="panel-body visitor">
+                            <div class="col-xs-2 col-md-3">
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="img/default_avatar.png" title="">
+                                </a>
+                            </div>
+                            <div class="col-xs-2 col-md-3">
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="upload/2017-08-27/1234.jpg" title="Yesterday">
+                                </a>
+                            </div>
+                            <div class="col-xs-2 col-md-3">
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="upload/20180606/780a453923868c3d279b3433cfbf8d65.png" title="ToString">
+                                </a>
+                            </div>
+                            <div class="col-xs-2 col-md-3">
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="upload/20180411/5d1cafffe660d9fd5cd3c43d24293c17.png" title="-">
+                                </a>
+                            </div>
+                            <div class="col-xs-2 col-md-3">
+                                <a href="javascript:;" class="thumbnail">
+                                    <img src="img/default_avatar.png" title="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="plugin/editormd/lib/marked.min.js"></script>
+<script type="text/javascript" src="plugin/editormd/lib/prettify.min.js"></script>
+<script type="text/javascript" src="plugin/editormd/lib/raphael.min.js"></script>
+<script type="text/javascript" src="plugin/editormd/lib/underscore.min.js"></script>
+<script type="text/javascript" src="plugin/editormd/lib/sequence-diagram.min.js"></script>
+<script type="text/javascript" src="plugin/editormd/lib/flowchart.min.js"></script>
+<script type="text/javascript" src="plugin/editormd/lib/jquery.flowchart.min.js"></script>
+<script type="text/javascript" src="plugin/editormd/editormd.min.js"></script>
+<script>
+    //转换开始,第一个参数是上面的div的id
+    editormd.markdownToHTML("mainBody", {
+        htmlDecode: "style,script,iframe", //可以过滤标签解码
+        emoji: true,
+        taskList: true,
+        tex: true,                // 默认不解析
+        flowChart: true,          // 默认不解析
+        sequenceDiagram: true,    // 默认不解析
+    });
+</script>
+</body>
+</html>

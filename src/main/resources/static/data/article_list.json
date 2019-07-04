@@ -1,0 +1,121 @@
+[
+  {
+    "id": 1,
+    "title": "win10 优化辅助",
+    "content": " Windows 10 优化辅助工具\n                优化内容如下：\n                01、禁用索引服务 26、将临时文件夹移动到非系统盘\n                02、禁止window发送错误报告 27、关闭家庭组\n                03、禁用&quot;最近使用的项目&quot; 28、延迟启动 Superfetch 服务\n                04、关闭Windows Defender 29、设置免输密码自动登陆\n                05、关闭防火墙 30、关闭开机画面（GUI引导）\n                06、检查更新而不自动下载更新 31、关闭 IPv6\n                07、启动电源计划&ldquo;高性能&rdquo; 32、关闭不需要的视觉特效\n                08、调整电源选项 33、关闭客户体验改善计划\n                09、禁用休眠（删除休眠文件） 34、隐藏操作中心任务栏托盘\n                10、开启快速启动 35、关闭自动播放或自动打开U盘\n                11、调整休眠文件大小 36、设置窗口超窄边框\n                12、转移虚拟内存 37、删除回收站右键固定到开始屏幕\n                13、关闭系统保护 38、直接删除文件不进入回收站\n                14、关闭用户账户控制(UAC) 39、关闭Smartscreen应用筛选器\n                15、WindowsToGo启用应用商店 40、关机时强制杀后台不等待\n                16、关闭计划任务隐藏的自启 41、关闭不必要的视觉动画效果\n                17、移除右键菜单SkyDrivePro 42、关闭程序跳转列表\n                18、禁止运行计算机自动维护计划 43、关闭远程协助\n                19、启用.NET Framework 3.5.1 44、更改IE默认下载目录\n                20、关闭程序兼容性助手 45、清理应用商店缓存\n                21、禁止一联网就打开浏览器 46、任务栏显示&ldquo;星期几&rdquo;\n                22、删除6个文件夹(暂失效) 47、设置系统自带截屏保存到桌面\n                23、显示受保护的系统文件 48、关闭磁盘碎片整理计划\n                24、桌面显示&ldquo;这台电脑&rdquo; 49、禁用系统日志和内存转储\n                25、启动IE增强保护模式 50、禁用疑难解答和系统诊断服务\n                详情见附件，下载附件后，请将后缀名更改为.bat格式直接双击运行。",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 2,
+    "title": "Mockdown快速入门 - 基本语法",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "一、标题\n                在想要设置为标题的文字前面加来表示\n                一个是一级标题，二个是二级标题，以此类推。支持六级标题。\n                示例：\n\n\n                这是一级标题\n                这是二级标题\n                这是三级标题\n                这是四级标题\n                这是五级标题\n                这是六级标题\n\n\n                效果如下\n\n                这是一级标题\n                这是二级标题\n                这是三级标题\n                这是四级标题\n                这是五级标题\n                这是六级标题\n                ------------\n                二、字体\n                - 加粗 要加粗的文字左右分别用两个*号包起来\n                - 斜体 要倾斜的文字左右分别用一个*号包起来\n                - 斜体加粗 要倾斜和加粗的文字左右分别用三个*号包起来\n                - 删除线 要加删除线的文字左右分别用两个~~号包起来\n\n                示例：\n\n\n                **这是加粗的文字**\n                *这是倾斜的文字*\n                ***这是斜体加粗的文字***\n                ~~这是加删除线的文字~~\n\n\n                效果如下\n\n                **这是加粗的文字**\n                *这是倾斜的文字*\n                ***这是斜体加粗的文字***\n                ~~这是加删除线的文字~~\n\n                ------------\n\n                三、引用\n                在引用的文字前加即可。\n\n                示例：\n\n\n                这是引用的内容\n                这是引用的内容\n                这是引用的内容\n\n\n                效果如下\n\n                这是引用的内容\n                这是引用的内容\n                这是引用的内容\n\n                ----\n                四、分割线\n                三个或者三个以上的 - 或者 * 都可以。\n\n                示例：\n\n\n                ---\n                ----\n                ***\n                *****\n\n\n                效果如下\n\n                ----\n                ***\n                *****\n\n                ----\n\n                五、超链接\n                语法：\n\n\n                [超链接名](超链接地址 &quot;超链接title&quot;)\n                title可加可不加\n\n\n                示例：\n\n\n                [第一行代码De博客]()\n                [百度](http://baidu.com)\n\n                效果如下\n\n                [第一行代码De博客]()\n                [百度一下](http://www.baidu.com)\n\n                ---\n\n                想了解更多请移步至【[百度一下](https://www.baidu.com/s?wd=markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95)】~",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 3,
+    "title": "经典的PHP加密解密算法",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "加密方法\n\n                php\n                /**\n                * PHP加解密方法\n                * @param string $string 需要加解密的字符串\n                * @param string $key 加解密key\n                * @param string $operation DECODE解密，ENCODE加密\n                * @param int $expiry 加密串有效期(秒)\n                * @return bool|string\n                */\n                function authcode($string = '', $key = '', $operation = 'DECODE', $expiry =\n                0)\n                {\n                // 动态密匙长度，相同的明文会生成不同密文就是依靠动态密匙\n                $ckey_length = 4;\n\n                // 密匙\n                $key = md5($key ? $key : $GLOBALS['discuz_auth_key']);\n\n                // 密匙a会参与加解密\n                $keya = md5(substr($key, 0, 16));\n                // 密匙b会用来做数据完整性验证\n                $keyb = md5(substr($key, 16, 16));\n                // 密匙c用于变化生成的密文\n                $keyc = $ckey_length ? ($operation == 'DECODE' ? substr($string, 0,\n                $ckey_length) :\n                substr(md5(microtime()), -$ckey_length)) : '';\n                // 参与运算的密匙\n                $cryptkey = $keya . md5($keya . $keyc);\n                $key_length = strlen($cryptkey);\n                // 明文，前10位用来保存时间戳，解密时验证数据有效性，10到26位用来保存$keyb(密匙b)，\n                //解密时会通过这个密匙验证数据完整性\n                // 如果是解码的话，会从第$ckey_length位开始，因为密文前$ckey_length位保存 动态密匙，以保证解密正确\n                $string = $operation == 'DECODE' ? base64_decode(substr($string,\n                $ckey_length)) :\n                sprintf('%010d', $expiry ? $expiry + time() : 0) . substr(md5($string .\n                $keyb), 0, 16) . $string;\n                $string_length = strlen($string);\n                $result = '';\n                $box = range(0, 255);\n                $rndkey = array();\n                // 产生密匙簿\n                for ($i = 0; $i &lt;= 255; $i++) {\n                $rndkey[$i] = ord($cryptkey[$i % $key_length]);\n                }\n                // 用固定的算法，打乱密匙簿，增加随机性，好像很复杂，实际上对并不会增加密文的强度\n                for ($j = $i = 0; $i &lt; 256; $i++) {\n                $j = ($j + $box[$i] + $rndkey[$i]) % 256;\n                $tmp = $box[$i];\n                $box[$i] = $box[$j];\n                $box[$j] = $tmp;\n                }\n                // 核心加解密部分\n                for ($a = $j = $i = 0; $i &lt; $string_length; $i++) {\n                $a = ($a + 1) % 256;\n                $j = ($j + $box[$a]) % 256;\n                $tmp = $box[$a];\n                $box[$a] = $box[$j];\n                $box[$j] = $tmp;\n                // 从密匙簿得出密匙进行异或，再转成字符\n                $result .= chr(ord($string[$i]) ^ ($box[($box[$a] + $box[$j]) % 256]));\n                }\n                if ($operation == 'DECODE') {\n                // 验证数据有效性，请看未加密明文的格式\n                if ((substr($result, 0, 10) == 0 || substr($result, 0, 10) - time() 0) &amp;&amp;\n                substr($result, 10, 16) == substr(md5(substr($result, 26) . $keyb), 0, 16))\n                {\n                return substr($result, 26);\n                } else {\n                return '';\n                }\n                } else {\n                // 把动态密匙保存在密文里，这也是为什么同样的明文，生产不同密文后能解密的原因\n                // 因为加密后的密文可能是一些特殊字符，复制过程可能会丢失，所以用base64编码\n                return $keyc . str_replace('=', '', base64_encode($result));\n                }\n                }\n\n\n                使用方法\n\n\n                $a = authcode(&quot;abcde&quot;,'123456','ENCODE');\n                $b = authcode($a,'123456','DECODE');",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 4,
+    "title": "JavaScript join() 方法，把数组元素组合为字符串",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "定义和用法\n\n\n                join() 方法用于把数组中的所有元素放入一个字符串。\n\n                元素是通过指定的分隔符进行分隔的\n\n                &amp;nbsp;\n                语法\n\n\n                arrayObject.join(separator)\n\n                | 参数 | 描述 |\n                | ------ | ------ | ------ |\n                | separator | 可选。指定要使用的分隔符。如果省略该参数，则使用逗号作为分隔符。 |\n\n                &amp;nbsp;\n\n                例子\n\n\n                &lt;script type=&quot;text/javascript&quot;\n\n                var arr = new Array(2)\n                arr[0] = &quot;a&quot;\n                arr[1] = &quot;b&quot;\n\n                document.write(arr.join())\n\n                &lt;/script\n\n\n                a,b\n\n",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 5,
+    "title": "PHP implode() 函数，把数组元素组合为字符串",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "定义和用法\n\n\n                implode(separator,array)\n\n                separator 可选。规定数组元素之间放置的内容。默认是 &quot;&quot;（空字符串）。\n                array 必需。要组合为字符串的数组。\n\n\n                implode() 函数返回由数组元素组合成的字符串。\n                注释：implode() 函数接受两种参数顺序。但是由于历史原因，explode() 是不行的，您必须保证 separator 参数在 string\n                参数之前才行。\n                注释：implode() 函数的 separator 参数是可选的。但是为了向后兼容，推荐您使用使用两个参数。\n                注释：该函数是二进制安全的。\n\n\n                实例\n\n\n                &lt;?php\n                $arr = array('Hello','World!','I','love','Shanghai!');\n                echo implode(&quot; &quot;,$arr);\n                ?\n\n                运行结果：Hello World! I love Shanghai!",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 6,
+    "title": "PHP合并两个一维数组",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "php\n                &lt;?php\n                $array1 = array('a'='张三','b'='李四','c'='王五');\n                $array2 = array('d'='赵六','e'='田七');\n                $result = $array1 + $array2 ;\n                var_dump($result);\n                ?\n\n\n                结果：\n                Array\n                (\n                [a] = 张三\n                [b] = 李四\n                [c] = 王五\n                [d] = 赵六\n                [e] = 田七\n                )",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 7,
+    "title": "将数组按照某个val值分组",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": " /**\n                * 给数组分组\n                * @param $arr 将要处理的数组\n                * @param $key 要分组的key名\n                * @return array\n                */\n                function group_same_key($arr, $key)\n                {\n                $new_arr = array();\n                foreach ($arr as $k = $v) {\n                $new_arr[$v[$key]][] = $v;\n                }\n                return $new_arr;\n                }",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 8,
+    "title": "jQuery判断checkbox、radio是否选中",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "checkbox是否选中的三种方法\n\n\n                方法一：\n                if ($(&quot;checkbox-id&quot;).get(0).checked) {\n                // do something\n                }\n\n                方法二：\n                if($('checkbox-id').is(':checked')) {\n                // do something\n                }\n\n                方法三：\n                if ($('checkbox-id').attr('checked')) {\n                // do something\n                }\n\n\n                radio是否选中的三种方法\n\n\n                方法一：\n                $(&quot;radio&quot;).is(&quot;:checked&quot;);",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 9,
+    "title": "Linux下 php安装mbstring扩展",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "执行\n\n\n                yum install php-mbstring\n\n\n                修改php.ini\n\n\n                echo &lsquo;extension=mbstring.so' /etc/php.ini 更具php安装目录而定\n\n\n                重启web service\n\n\n                service httpd restart",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  },
+  {
+    "id": 10,
+    "title": "Linux下部署php+apache",
+    "thumbnail": "upload/20190401/e1b57ae71ae19391c98aa61e2cf91928.jpg",
+    "content": "一、安装apache\n\n\n                yum install httpd httpd-devel\n\n                启动apache:\n                systemctl start httpd.service\n\n                设置开机自动启动：\n                systemctl enable httpd.service\n\n                此时输入服务器的IP地址，应该看到apache的服务页面，端口不用输，apache默认就是使用80端口\n\n\n                二、安装PHP\n\n\n                yum install php php-devel\n\n                重启apache使php生效\n                systemctl restart httpd.service\n\n                此时可以在目录：/var/www/html/下建立一个PHP文件，代码如下：\n                &lt;?php phpinfo(); ?\n\n                然后访问这个文件，就能看到PHP的一些信息，php.ini配置文件的路径可以在这个页面上看到\n\n                安装php的扩展\n                yum install php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml\n                php-xmlrpc\n\n                安装完扩展之后需要再次重启apache\n                systemctl restart httpd.service",
+    "author": "李纪科",
+    "special": "操作系统入门",
+    "tag": "操作系统",
+    "createTime": "2019-04-13 18:20:10",
+    "comments": 20,
+    "pageview": 50
+  }
+]

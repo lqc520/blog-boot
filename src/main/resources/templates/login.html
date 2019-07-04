@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录 - 第一行代码De博客</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/common.css" rel="stylesheet"/>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="plugin/layer/layer.js"></script>
+</head>
+<body>
+<div class="container cb-login">
+
+    <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4"
+         style="margin-top: 20vh;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center">登录</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="text" class="form-control phone" name="mobile" placeholder="请输入手机号" value="18065859553">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control password" name="password" placeholder="请输入密码" value="123456">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="rememberMe"> 记住我</label>
+                    <a href="" class="pull-right text-danger">忘记密码？</a>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="btn-login">登录</button>
+                <div class="checkbox">
+                    <span>还没有帐号？<a href="./register.html" class="text-danger">马上注册</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("body").css("background-image", "url(img/logo_bg.jpg)");
+    $('#btn-login').click(function () {
+        var mobile = $('input[name=mobile]').val();
+        var password = $('input[name=password]').val();
+        var rememberMe = $("input[name=rememberMe]").prop('checked');
+
+        if (!mobile) {
+            layer.msg('请输入手机号', {icon: 7});
+            return false;
+        }
+        if (!password) {
+            layer.msg('请输入密码', {icon: 7});
+            return false;
+        }
+
+        $.ajax({
+            url: 'memberLogin',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                mobile: mobile,
+                password: password,
+                rememberMe: rememberMe
+            },
+            success: function (response) {
+                if (response.code == 0) {
+                    layer.msg(response.msg, {
+                        icon: 6,
+                        time: 1500
+                    }, function () {
+                        window.location.href = './index.html';
+                    });
+                } else {
+                    layer.msg(response.msg, {icon: 7});
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

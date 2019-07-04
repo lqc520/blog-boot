@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册 - imcode的博客</title>
+
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/css/common.css" rel="stylesheet"/>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/plugin/layer/layer.js"></script>
+</head>
+<body>
+
+<div class="container cb-login">
+    <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 col-xs-offset-1 col-sm-offset-2 col-md-offset-3 col-lg-offset-4"
+         style="margin-top: 17vh;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center">注册</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="mobile" placeholder="请输入手机号">
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="code" placeholder="请输入验证码">
+                        <span class="input-group-addon getCode">获取验证码</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="repassword" placeholder="请输入确认密码">
+                </div>
+                <div class="checkbox">
+                    <label></label>
+                    <a href="" class="pull-right text-danger">忘记密码？</a>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="btn-save">注册</button>
+                <div class="checkbox">
+                    <span>已有帐号？<a href="./login.html" class="text-danger">去登录</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $("body").css("background-image", "url(img/logo_bg.jpg)");
+
+    var codeFlag = true;
+    var cPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+
+
+    $heckMobile = /^1[34578]\d{9}$/;
+    //由数字和字母组成，并且要同时含有数字和字母，且长度要在8-16位之间
+    var check=('.getCode').click(function () {
+        if (codeFlag) {
+            var mobile = $('input[name=mobile]').val();
+
+            if (!mobile) {
+                layer.msg('请输入手机号', {icon: 7});
+                return false;}
+
+
+            if (!checkMobile.test(mobile)) {
+                layer.msg('手机号码格式不正确', {icon: 7});
+                return false;
+            }
+
+            $.ajax({
+                url: 'getAliyunSMSCode',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    mobile: mobile
+                },
+                success: function (response) {
+                    if (response.code == 0) {
+                        layer.msg(response.msg, {
+                            icon: 6,
+                            time: 1500
+                        }, function (index) {
+                            layer.close(index);
+                            codeFlag = false;
+                            var timer = 60;
+                            Countdown();
+
+                            function Countdown() {
+                                if (timer >= 1) {
+                                    timer -= 1;
+                                    $('.getCode').text(timer + 's');
+                                    setTimeout(function () {
+                                        Countdown();
+                                    }, 1000);
+                                } else {
+                                    codeFlag = true;
+                                    $('.getCode').text('获取验证码');
+                                }
+                            }
+                        });
+                    } else {
+                        layer.msg(response.msg, {icon: 7});
+                    }
+                }
+            })
+        }
+    });
+
+
+    /**
+     * 点击注册按钮
+     */
+    $('#btn-save').click(function () {
+        var mobile = $('input[name=mobile]').val();
+        var code = $('input[name=code]').val();
+        var password = $('input[name=password]').val();
+        var repassword = $('input[name=repassword]').val();
+
+        if (!mobile) {
+            layer.msg('请输入手机号', {icon: 7});
+            return false;
+        }
+        if (!checkMobile.test(mobile)) {
+            layer.msg('手机号码格式不正确', {icon: 7});
+            return false;
+        }
+        if (!code) {
+            layer.msg('请输入验证码', {icon: 7});
+            return false;
+        }
+        if (!password) {
+            layer.msg('请输入密码', {icon: 7});
+            return false;
+        }
+        if (!checkPassword.test(password)) {
+            layer.msg('密码由数字和字母组成，并且要同时含数字和字母，长度要在8-16位之间', {icon: 7});
+            return false;
+        }
+
+        if (!repassword) {
+            layer.msg('请输入确认密码', {icon: 7});
+            return false;
+        }
+        if (password != repassword) {
+            layer.msg('两次输入的密码不一致', {icon: 7});
+            return false;
+        }
+
+        //校验通过，提交后台注册
+        $.ajax({
+            url: 'addMember',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                mobile: mobile,
+                password: password,
+                code: code
+            },
+            success: function (response) {
+                if (response.code == 0) {
+                    layer.msg(response.msg, {
+                        icon: 6,
+                        time: 1500
+                    }, function (index) {
+                        window.location.href = "./login.html";
+                    });
+                } else {
+                    layer.msg(response.msg, {icon: 7});
+                }
+            }
+        })
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lqcnb.blog.api.mapper.VisitMapper">
+  <resultMap id="BaseResultMap" type="cn.lqcnb.blog.api.entity.Visit">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="visit_id" jdbcType="INTEGER" property="visitId" />
+    <result column="visit_avatar" jdbcType="VARCHAR" property="visitAvatar" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+</mapper>

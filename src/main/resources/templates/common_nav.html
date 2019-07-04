@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">
+            <img src="img/logo.png" style="height: 100%;float: left">lqc设计的博客
+        </a>
+        <form class="navbar-form navbar-left">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="搜索文章...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav navbar-right">
+            <#if member?exists>
+            <li><a href="./member_index.html"><span class="glyphicon glyphicon-user"></span> ${member.name!'请设置用户名'}</a></li>
+            <#else>
+            <li><a href="./login.html"><span class="glyphicon glyphicon-user"></span> 登录</a></li>
+            </#if>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="javascript:;" class="portrait dropdown-toggle" data-toggle="dropdown">
+                    <img src="img/default_avatar.png"> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="member_index.html">
+                            <span class="glyphicon glyphicon-user"></span>
+                            我的主页
+                        </a>
+                    </li>
+                    <li>
+                        <a href="toAddArticle" target="_blank">
+                            <span class="glyphicon glyphicon-send"></span>
+                            发文章
+                        </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="loginOut">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            退出
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

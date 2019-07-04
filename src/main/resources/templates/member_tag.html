@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>imcode 的博客 - 个人中心 基本信息</title>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="plugin/layer/layer.js"></script>
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        我的标签
+        <input type="hidden" id="mid" value="${member.id}">
+    </div>
+
+    <div class="panel-body" style="padding-bottom: 50px">
+        <a href="member_tag_add.html" class="btn btn-primary" style="margin-bottom: 20px">新增标签</a>
+        <div class="btn-toolbar">
+            <#if tagList?? && (tagList?size > 0) >
+                <#list tagList as tag>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-tag">${tag.name}</span>
+                        </button>
+
+                        <a href="" class="btn btn-primary btn-xs tagDel" did=${tag.id} >
+                            <span class="glyphicon glyphicon glyphicon-trash"></span>
+                        </a>
+                    </div>
+                </#list>
+            </#if>
+        </div>
+    </div>
+</div>
+    <script>
+        $('.tagDel').click(function () {
+            var did=$(this).attr("did");
+            $.ajax({
+                url:'deleteTag',
+                type: 'get',
+                data: {
+                    id: did
+                },
+                dataType:'json',//服务器响应客户端的数据类型
+                success: function (response) {
+                    if (response.code == 0) { //表示成功
+                        layer.msg(response.msg, {icon: 1, time: 1000}, function () {
+                            window.location.href = 'getTag?memberID='+$('#mid').val();
+                        });
+                    } else {
+                        layer.alert(response.msg);
+                    }
+                }
+            });
+
+        });
+        // function add(){
+        //     layer.open({
+        //         type: 1,
+        //         skin: 'layui-layer-rim', //加上边框
+        //         area: ['420px', '240px'], //宽高
+        //         content: 'html内容'
+        //     });
+        // }
+
+    </script>
+</body>
+</html>

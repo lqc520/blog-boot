@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>imcode 的博客 - 个人中心</title>
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/css/common.css" rel="stylesheet"/>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/plugin/jquery-form/jquery.form.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/plugin/layer/layer.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <!--顶部导航栏-->
+    <div class="row cb-header">
+        <script>$('.cb-header').load('./common_nav.html');</script>
+    </div>
+    <!--个人中心内容-->
+    <div class="row mt10">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media user_info">
+                        <div class="media-left" title="点击修改头像">
+                            <form enctype="multipart/form-data" id="form-avatar">
+                                <input type="hidden" value="${member.id}" name="id">
+                                <img class="media-object show_avatar" src=" ${member.avatar!'img/default_avatar.png'}">
+
+                                <div class="mask upload_avatar"><span class="glyphicon glyphicon-camera"></span></div>
+                                <input type="file" name="file" style="display: none;">
+                            </form>
+                        </div>
+                        <div class="media-body">
+                            <h3>${member.blogName!'blogName'}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row user_details">
+                <div class="col-sm-4 col-md-3 l">
+                    <div class="list-group">
+                        <a class="list-group-item disabled" url="./member_info.html">
+                            <span class="glyphicon glyphicon-menu-right"> </span> 基本资料
+                        </a>
+                        <a class="list-group-item" url="./toMemberArticle?memberID=${member.id}">
+                            <span class="glyphicon glyphicon-menu-right"> </span> 我的文章
+                        </a>
+                        <a class="list-group-item" url="./getTag?memberID=${member.id}">
+                            <span class="glyphicon glyphicon-menu-right"> </span> 我的标签
+                        </a>
+                        <a class="list-group-item" url="./toColumn?memberID=${member.id}">
+                            <span class="glyphicon glyphicon-menu-right"> </span> 我的栏目
+                        </a>
+                        <a class="list-group-item" url="./member_password.html">
+                            <span class="glyphicon glyphicon-menu-right"> </span> 修改密码
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-8 col-md-9 r">
+                    <iframe
+                            src="./member_info.html"
+                            id="mainiframe"
+                            width="100%"
+                            height="500"
+                            frameborder="0"
+                            scrolling="auto" style="min-height: 500px"
+                            onload="setIFrameHeight(this)">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 点击左侧菜单
+    $('.list-group-item').click(function () {
+        $('.list-group-item').removeClass('disabled');
+        $(this).addClass('disabled');
+        $('#mainiframe').attr('src', $(this).attr('url'));
+    });
+
+    // 上传头像
+    $('.upload_avatar').click(function () {
+        $('input[name=file]').val('');
+        $('input[name=file]').trigger('click');
+    });
+
+    $('input[name=file]').change(function () {
+        // var formData = new FormData();
+        // formData.append('file', this.files[0]);
+        $('#form-avatar').ajaxSubmit({
+            url: 'addMemberImg',
+            type: 'post',
+            dataType: 'json',
+            success: function (msg) {
+                if (msg.code == 0) {
+                    layer.alert(msg.msg);
+                    $('.show_avatar').attr('src',msg.data);
+                } else {
+                    layer.alert(msg.msg);
+
+                }
+            },
+            error: function () {
+                layer.alert('上传失败');
+            }
+        });
+    });
+</script>
+
+<!--让ifream高度自适应-->
+<script type="text/javascript">
+    function setIFrameHeight(obj) {
+        var win = obj;
+        if (document.getElementById) {
+            if (win && !window.opera) {
+                if (win.contentDocument && win.contentDocument.body.offsetHeight)
+                    win.height = win.contentDocument.body.offsetHeight;
+                else if (win.Document && win.Document.body.scrollHeight)
+                    win.height = win.Document.body.scrollHeight;
+            }
+        }
+    }
+</script>
+</body>
+</html>

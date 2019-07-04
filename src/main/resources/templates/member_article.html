@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>imcode 的博客 - 个人中心 基本信息</title>
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="plugin/layer/layer.js"></script>
+    </head>
+    <body>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                文章列表
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <input type="text" name="title" class="form-control"
+                                   placeholder="关键字">
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control">
+                                <option value="">文章分类</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control">
+                                <option value="">标签</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-primary">搜索</button>
+                        </div>
+                    </div>
+                    <a href="" id="toAddArticle" class="btn btn-primary" style="margin-bottom: 5px">发布文章</a>
+                </form>
+
+                <table class="table">
+                    <tr>
+                        <th>文章标题</th>
+                        <th>浏览次数</th>
+                        <th>发布时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <#if articleList?? && (articleList?size > 0)>
+                        <#list articleList as var>
+                            <tr>
+                                <td>${var.title}</td>
+                                <td>${var.visit!'0'}</td>
+                                <td>${var.createTime?string('yyyy-MM-dd hh:mm:ss')}</td>
+                                <td>
+                                    <a href="" id="update" aid="${var.id}" class="btn btn-warning btn-xs">
+                                        <span class="glyphicon glyphicon-pencil"></span> 修改
+                                    </a>
+                                    <a href="" class="btn btn-danger btn-xs artDel" did="${var.id}">
+                                        <span class="glyphicon glyphicon-trash"></span> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                        </#list>
+                     </#if>
+                 </table>
+                <nav>
+                    <ul class="pager">
+                        <li><a href="toMemberArticle?memberID=${member.id}&pageNum=${pageNum-1}&pageSize=${pageSize}">上一页</a></li>
+                        <li><a href="toMemberArticle?memberID=${member.id}&pageNum=${pageNum+1}&pageSize=${pageSize}">下一页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <script>
+            $('#toAddArticle').click(function () {
+               // 跳出iframe框架
+                window.top.location="toAddArticle";
+            });
+            $('#update').click(function () {
+                // 跳出iframe框架
+                var id=$(this).attr("aid");
+                window.top.location="toUpdate?id="+id;
+            });
+            $('.artDel').click(function () {
+                var did=$(this).attr("did");
+                $.ajax({
+                    url:'deleteArticle/'+did,
+                    type: 'get',
+                    dataType:'json',//服务器响应客户端的数据类型
+                    success: function (response) {
+                        if (response.code == 0) { //表示成功
+                            layer.msg(response.msg, {icon: 1, time: 1000}, function () {
+                                window.location.href = 'toMemberArticle?memberID=${member.id}';
+                            });
+                        } else {
+                            layer.alert(response.msg);
+                        }
+                    }
+                });
+
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>imcode 的博客 - 个人中心 基本信息</title>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="plugin/layer/layer.js"></script>
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        我的栏目
+    </div>
+    <div class="panel-body">
+        <a href="member_column_add.html" class="btn btn-primary" style="margin-bottom: 5px">新增栏目</a>
+        <table class="table">
+            <tr>
+                <th>栏目名称</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            <#if columnList?? && (columnList?size > 0) >
+                <#list columnList as val>
+                    <tr>
+                        <td>${val.name}</td>
+                        <td>${val.createTime?string('yyyy-MM-dd hh:mm:ss')}</td>
+                        <td>
+                            <a href="getArticleById?id=${val.id}" class="btn btn-warning btn-xs">
+                                <span class="glyphicon glyphicon-pencil"></span> 修改
+                            </a>
+                            <a href="" class="btn btn-danger btn-xs colDel" did="${val.id}">
+                                <span class="glyphicon glyphicon-trash"></span> 删除
+                            </a>
+                        </td>
+                    </tr>
+                </#list>
+            </#if>
+        </table>
+        <nav>
+            <ul class="pager">
+                <li><a href="toColumn?memberID=${member.id}&pageNum=${pageNum-1}&pageSize=${pageSize}">上一页</a></li>
+                <li><a href="toColumn?memberID=${member.id}&pageNum=${pageNum+1}&pageSize=${pageSize}">下一页</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script>
+    $('.colDel').click(function () {
+        var did=$(this).attr("did");
+        $.ajax({
+            url:'deleteColumn',
+            type: 'get',
+            data: {
+                id: did
+            },
+            dataType:'json',//服务器响应客户端的数据类型
+            success: function (response) {
+                if (response.code == 0) { //表示成功
+                    layer.msg(response.msg, {icon: 1, time: 1000}, function () {
+                        window.location.href = 'getTag?memberID='+$('#mid').val();
+                    });
+                } else {
+                    layer.alert(response.msg);
+                }
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

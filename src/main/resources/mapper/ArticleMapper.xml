@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lqcnb.blog.api.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="cn.lqcnb.blog.api.entity.Article">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="article_type_id" jdbcType="INTEGER" property="articleTypeId" />
+    <result column="tag_id" jdbcType="INTEGER" property="tagId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="attachment" jdbcType="VARCHAR" property="attachment" />
+    <result column="visit" jdbcType="VARCHAR" property="visit" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <select id="getArticlesByMid" resultType="map" parameterType="Integer">
+       SELECT
+            a.id,
+            a.title,
+            a.content,
+            a.attachment,
+            date_format(a.create_time, '%Y-%m-%d %H:%i:%S') create_time,
+            c.`name` special,
+            t.`name` tag,
+            m.`name` author
+        FROM
+            `article` a,
+            article_type c,
+            member m,
+            tag t
+        WHERE
+            a.article_type_id = c.id
+        AND a.member_id = m.id
+        AND a.tag_id = t.id
+        AND c.member_id = m.id
+        AND t.member_id = m.id
+        AND a.member_id = #{mid}
+    </select>
+
+    <select id="getArticles" resultType="map">
+       SELECT
+            a.id,
+            a.title,
+            a.content,
+            a.attachment,
+            date_format(a.create_time, '%Y-%m-%d %H:%i:%S') create_time,
+            c.`name` special,
+            t.`name` tag,
+            m.`name` author,
+            m.avatar
+        FROM
+            `article` a,
+            article_type c,
+            member m,
+            tag t
+        WHERE
+            a.article_type_id = c.id
+        AND a.member_id = m.id
+        AND a.tag_id = t.id
+        AND c.member_id = m.id
+        AND t.member_id = m.id
+    </select>
+
+    <select id="getArticleById" resultType="map"  parameterType="Integer">
+       SELECT
+            a.id,
+            a.title,
+            a.content,
+             a.attachment,
+            date_format(a.create_time, '%Y-%m-%d %H:%i:%S') create_time,
+            c.`name` special,
+            t.`name` tag,
+            m.`name` author,
+              m.avatar
+        FROM
+            `article` a,
+            article_type c,
+            member m,
+            tag t
+        WHERE
+            a.article_type_id = c.id
+        AND a.member_id = m.id
+        AND a.tag_id = t.id
+        AND c.member_id = m.id
+        AND t.member_id = m.id
+        AND a.id=#{id}
+
+    </select>
+
+    <select id="getArticlesByTitle" resultType="map" parameterType="String">
+       SELECT
+            a.id,
+            a.title,
+            a.content,
+            a.attachment,
+            date_format(a.create_time, '%Y-%m-%d %H:%i:%S') create_time,
+            c.`name` special,
+            t.`name` tag,
+            m.`name` author,
+            m.avatar
+        FROM
+            `article` a,
+            article_type c,
+            member m,
+            tag t
+        <where>
+                a.article_type_id = c.id
+            AND a.member_id = m.id
+            AND a.tag_id = t.id
+            AND c.member_id = m.id
+            AND t.member_id = m.id
+            <if test="_parameter!=null and _parameter!=''">
+                AND a.title like concat("%",#{title},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
