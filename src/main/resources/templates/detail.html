@@ -12,7 +12,7 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-
+    <script src="plugin/layer/layer.js"></script>
 
     <style>
         .editormd-preview-container, .editormd-html-preview {
@@ -64,7 +64,12 @@
 
                             <blockquote style="font-weight:initial;border-left: 5px solid #eee;">
                                 <mark style="font-size: 13px;">
-                                    <a href="${article.attachment!''}" target="_blank">附件下载</a> <br>
+                                    <#if article.attachment?exists>
+                                        <a href="${article.attachment!''}" id="download" target="_blank">附件下载</a> <br>
+                                    <#else>
+                                        附件不存在
+                                    </#if>
+
                                 </mark>
                             </blockquote>
                         </div>
@@ -176,6 +181,12 @@
         flowChart: true,          // 默认不解析
         sequenceDiagram: true,    // 默认不解析
     });
+    $('#download').click(function () {
+        if(!url){
+            layer.msg('没有附件可以下载', {icon: 7});
+        }
+    });
+
 </script>
 </body>
 </html>

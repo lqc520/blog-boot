@@ -177,16 +177,4 @@ public class ArticleController {
 
 
 
-//    @ApiOperation(value = "获取文章数据",notes = "获取文章数据")
-//    @ApiImplicitParam(name = "id" ,value = "文章id",paramType = "query")
-//    @GetMapping("/getArticleById")
-//    public Map getArticleById(Integer id){
-//        Map article = articleService.getArticleById(id);
-//        return article;
-//    }
-
-
-
-
-
 }
