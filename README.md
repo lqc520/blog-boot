@@ -28,7 +28,7 @@ redis
 
 
 
-![1562241126172](/lqc520/assess/1562241126172.png)
+![1562241126172](https://github.com/lqc520/blog/tree/master/assess/1562241126172.png)
 
 
 
