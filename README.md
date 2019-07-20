@@ -28,20 +28,20 @@ redis
 
 
 
-![1562241126172](https://github.com/lqc520/blog/tree/master/assess/1562241126172.png)
+![1562241126172](https://github.com/lqc520/blog/blob/master/assess/1562241126172.png)
 
 
 
 登录界面
 
 
-![1562241208984](assess\1562241208984.png)
+![1562241208984](https://github.com/lqc520/blog/blob/master/assess/1562241208984.png)
 
 
 
 注册界面
 
-![1562241263757](assess\1562241263757.png)
+![1562241263757](https://github.com/lqc520/blog/blob/master/assess/1562241263757.png)
 
 
 
@@ -49,11 +49,11 @@ redis
 
 个人中心
 
-![1562241307449](assess\1562241307449.png)
+![1562241307449](https://github.com/lqc520/blog/blob/master/assess/1562241307449.png)
 
 文章列表
 
-![1562241323998](assess\1562241323998.png)
+![1562241323998](https://github.com/lqc520/blog/blob/master/assess/1562241323998.png)
 
 
 
@@ -61,11 +61,11 @@ redis
 
 标签栏
 
-![1562241341862](assess\1562241341862.png)
+![1562241341862](https://github.com/lqc520/blog/blob/master/assess/1562241341862.png)
 
 栏目
 
-![1562241359623](assess\1562241359623.png)
+![1562241359623](https://github.com/lqc520/blog/blob/master/assess/1562241359623.png)
 
 
 
@@ -77,13 +77,13 @@ redis
 
 
 
-![1562241374181](assess\1562241374181.png)
+![1562241374181](https://github.com/lqc520/blog/blob/master/assess/1562241374181.png)
 
 
 
 发表文章
 
-![1562241393881](assess\1562241393881.png)
+![1562241393881](https://github.com/lqc520/blog/blob/master/assess/1562241393881.png)
 
 
 
@@ -91,7 +91,7 @@ redis
 
 
 
-![1562241442083](assess\1562241442083.png)
+![1562241442083](https://github.com/lqc520/blog/blob/master/assess/1562241442083.png)
 
 
 
@@ -101,7 +101,7 @@ redis
 
 ### API接口
 
-![1562241486784](assess\1562241486784.png)
+![1562241486784](https://github.com/lqc520/blog/blob/master/assess/1562241486784.png)
 
 
 
