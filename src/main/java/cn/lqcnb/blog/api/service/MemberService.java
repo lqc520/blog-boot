@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -32,6 +33,13 @@ public class MemberService{
         return memberMapper.selectByPrimaryKey(id);
     }
 
+    public List<Member> getMemberList(){
+        return memberMapper.selectAll();
+    }
+
+    public boolean removeMember(Integer id){
+        return memberMapper.deleteByPrimaryKey(id)>0;
+    }
 //    public boolean saveFile(MultipartFile file, String path) {
 //        // 判断文件是否为空
 //        if (!file.isEmpty()) {

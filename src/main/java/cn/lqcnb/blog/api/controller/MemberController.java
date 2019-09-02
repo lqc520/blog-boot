@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -157,6 +158,44 @@ public class MemberController {
         }
         return R.error("无文件上传");
     }
+
+
+    @GetMapping("/admin/getMemberList")
+    @ApiOperation(value = "获取用户列表",notes = "获取用户列表")
+    public List<Member> getMemberList(){
+        return memberService.getMemberList();
+    }
+
+    @GetMapping("/admin/removeMember/{ids}")
+    @ApiOperation(value = "删除用户",notes = "删除用户")
+    @ApiImplicitParam(name = "ids" ,value = "会员ids列表",paramType="path",required = true)
+    public R removeMember(@PathVariable String ids){
+        String[] idList = ids.split(",");
+        for(String id : idList){
+            memberService.removeMember(Integer.parseInt(id));
+        }
+        return  R.ok("删除成功");
+//        if(memberService.removeMember(id)){
+//            return R.ok("删除用户成功");
+//        }
+//        return R.error("删除用户失败");
+
+    }
+
+    @ApiOperation(value = "添加会员",notes = "添加会员")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "member" ,value = "会员对象",paramType="query",dataType = "Member")
+    })
+    @GetMapping("/admin/addMember")
+    public R adminAddMember(Member member){
+            if(memberService.addMember(member)){
+                return R.ok("添加会员信息成功");
+            }
+            return R.error("添加会员信息失败");
+
+    }
+
+
     /**
      *
      * @param mobile 手机号

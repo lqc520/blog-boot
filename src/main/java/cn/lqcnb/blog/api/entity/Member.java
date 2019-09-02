@@ -26,6 +26,17 @@ public class Member {
      */
     private String avatar;
 
+    public Member(Integer id, String mobile, String password, String name, String nickname, String sex, String email, String blogName, String avatar) {
+        this.id = id;
+        this.mobile = mobile;
+        this.password = password;
+        this.name = name;
+        this.nickname = nickname;
+        this.sex = sex;
+        this.email = email;
+        this.blogName = blogName;
+        this.avatar = avatar;
+    }
 
     public Member(String mobile, String password) {
         this.mobile = mobile;

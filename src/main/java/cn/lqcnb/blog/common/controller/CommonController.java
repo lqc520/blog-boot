@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@Api("通用api")
+//@Api("通用api")
 public class CommonController {
 
 
@@ -37,18 +37,12 @@ public class CommonController {
         session.removeAttribute("member");
         return "login";
     }
-//   @RequestMapping("login")
-//    public String doLogin(){
-//          return "login";
-//      }
-//    @RequestMapping("index")
-//    public String doIndex(){
-//        return "index";
-//    }
-//    @RequestMapping("register")
-//    public String doRegister(){
-//        return "register";
-//    }
+   @RequestMapping("/admin/*")
+   public String doForwardAdmin(HttpServletRequest request){
+        String servletPath = request.getServletPath();
+        String url = servletPath.replace(".html", "");
+        return url;
+    }
 
 
 }
