@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-admin 后台管理系统 - 更新资源</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/plugin/bootstrap-table/bootstrap-table.css" rel="stylesheet">
+    <link href="/plugin/iCheck/custom.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>更新资源</h5>
+        </div>
+        <div class="ibox-content">
+            <form class="form-horizontal m-t" id="data-form" onsubmit="return false">
+                <input type="hidden" name="parentId" value="">
+                <input type="hidden" name="id" value="">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">上级资源名称：</label>
+                    <div class="col-sm-5">
+                        <input name="parentName" class="form-control" type="text" readonly value="系统管理">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">资源名称：</label>
+                    <div class="col-sm-5">
+                        <input name="name" class="form-control" type="text" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">资源图标：</label>
+                    <div class="col-sm-5">
+                        <input name="icon" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">资源类型：</label>
+                    <div class="col-sm-5">
+                        <div class="radio-inline i-checks">
+                            <label>
+                                <input type="radio" name="tyep" value="1" checked readonly> <i></i> 菜单
+                            </label>
+                        </div>
+                        <div class="radio-inline i-checks">
+                            <label>
+                                <input type="radio" name="tyep" value="2" readonly> <i></i> 按钮
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">资源路径：</label>
+                    <div class="col-sm-5">
+                        <input name="url" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">资源权限：</label>
+                    <div class="col-sm-5">
+                        <input name="permission" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5 col-sm-offset-2">
+                        <button class="btn btn-primary" type="submit">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js"></script>
+<script src="/plugin/layer/layer.js"></script>
+
+<script src="/plugin/validate/jquery.validate.js"></script>
+<script src="/plugin/validate/messages_zh.js"></script>
+
+<script src="/plugin/bootstrap-table/bootstrap-table.js"></script>
+<script src="/plugin/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+<script src="/plugin/iCheck/icheck.min.js"></script>
+<script>
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
+</script>
+
+<script>
+    var url_save = 'data/success.json';
+    var url_list = 'data/resource_list.json';
+    $("#data-form").validate({
+        submitHandler: function (form) {
+            $.ajax({
+                url: url_save,
+                type: 'get',
+                data: $("#data-form").serialize(),
+                success: function (response) {
+                    if (response.code == 0) {
+                        layer.msg(response.msg, {icon: 1, time: 1000}, function (index) {
+                            parent.dataTable.bootstrapTable('refresh', {
+                                url: url_list
+                            });
+                            parent.layer.closeAll();
+                        });
+                    } else {
+                        layer.alert(response.msg);
+                    }
+                }
+            })
+        }
+    });
+</script>
+</body>
+</html>

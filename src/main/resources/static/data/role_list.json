@@ -1,0 +1,15 @@
+{
+  "total": 100,
+  "rows": [
+    {
+      "roleId": 1,
+      "roleName": "管理员",
+      "remark": "管理员"
+    },
+    {
+      "roleId": 2,
+      "roleName": "超级管理员",
+      "remark": "超级管理员"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "parentId": 0,
+    "name": "系统资源",
+    "url": "",
+    "icon": "glyphicon glyphicon-cog",
+    "permission": "",
+    "type": "0"
+  },
+  {
+    "id": 2,
+    "parentId": 1,
+    "name": "系统管理",
+    "url": "",
+    "icon": "glyphicon glyphicon-cog",
+    "permission": "",
+    "type": "1"
+  },
+  {
+    "id": 3,
+    "parentId": 2,
+    "name": "用户管理",
+    "url": "",
+    "icon": "glyphicon glyphicon-cog",
+    "permission": "",
+    "type": "2"
+  },
+  {
+    "id": 4,
+    "parentId": 2,
+    "name": "角色管理",
+    "url": "",
+    "icon": "glyphicon glyphicon-cog",
+    "permission": "",
+    "type": "2"
+  },
+  {
+    "id": 5,
+    "parentId": 2,
+    "name": "资源管理",
+    "url": "",
+    "icon": "glyphicon glyphicon-cog",
+    "permission": "",
+    "type": "2",
+    "checked": true
+  }
+]

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-admin 后台管理系统 - 资源管理</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/plugin/bootstrap-table/bootstrap-table.css" rel="stylesheet">
+    <link href="/plugin/jquery-treegrid/css/jquery.treegrid.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-content">
+            <div class="row ibox-toolbar">
+                <div class="btn-group col-sm-4">
+                    <button id="btn-add" type="button" class="btn btn-outline btn-default">
+                        <i class="glyphicon glyphicon-plus"></i> 新增
+                    </button>
+
+                    <button id="btn-update" type="button" class="btn btn-outline btn-default">
+                        <i class="glyphicon glyphicon-pencil"></i> 修改
+                    </button>
+
+                    <button id="btn-del" type="button" class="btn btn-outline btn-default">
+                        <i class="glyphicon glyphicon-trash"></i> 删除
+                    </button>
+                </div>
+
+                <form class="form-inline col-sm-8" onsubmit="return false">
+                    <div class="text-right">
+                        <div class="form-group">
+                            <input name="name" id="name" class="form-control" type="text" placeholder="请输入资源名称">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline btn-default" id="btn-search" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table id="data-table"></table>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js"></script>
+<script src="/plugin/layer/layer.js"></script>
+
+<script src="/plugin/bootstrap-table/bootstrap-table.js"></script>
+<script src="/plugin/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+<script src="/plugin/bootstrap-table/bootstrap-table-treegrid.js"></script>
+<script src="/plugin/jquery-treegrid/js/jquery.treegrid.js"></script>
+<script>
+    var list_url = 'data/resource_list.json';
+    var add_url = 'resource_add.html';
+    var update_url = 'resource_update.html';
+    var del_url = 'data/success.json';
+
+    // 初始化表格数据
+    var dataTable = $('#data-table').bootstrapTable({
+        url: list_url,                      //  请求后台的URL
+        method: "get",                      //  请求方式
+        uniqueId: "id",                 //  每一行的唯一标识，一般为主键列
+        cache: false,                       //  设置为 false 禁用 AJAX 数据缓存， 默认为true
+        columns: [{
+            checkbox: true
+        }, {
+            field: 'icon',
+            title: '图标',
+            align: 'center',
+            width: '20',
+            formatter: function (value, row, index) {
+                var icon = '<i class="' + row.icon + '"></i> '
+                return icon;
+            }
+        }, {
+            field: 'name',
+            title: '资源名称'
+        }, {
+            field: 'type',
+            title: '资源类型',
+            formatter: function (value, row, index) {
+                if (row.type == 0) {
+                    return '目录';
+                }
+                if (row.type == 1) {
+                    return '菜单';
+                }
+                if (row.type == 2) {
+                    return '按钮';
+                }
+
+            }
+        }, {
+            field: 'url',
+            title: '资源路径'
+        }, {
+            field: 'permission',
+            title: '权限'
+        }],
+        queryParams: function (param) {
+            return {
+                roleName: $("#name").val()
+            }
+        },
+        treeShowField: 'name',
+        parentIdField: 'parentId',
+        onLoadSuccess: function (data) {
+            $('#data-table').treegrid({
+                //initialState: 'collapsed',//收缩
+                treeColumn: 2,//指明第几列数据为树形
+                expanderExpandedClass: 'glyphicon glyphicon-triangle-bottom',
+                expanderCollapsedClass: 'glyphicon glyphicon-triangle-right',
+                onChange: function () {
+                    $('#data-table').bootstrapTable('resetWidth');
+                }
+            });
+        },
+        clickToSelect: true,
+        singleSelect: true
+    });
+
+    // 查询
+    $('#btn-search').click(function () {
+        dataTable.bootstrapTable('refresh', {
+            url: list_url
+        });
+    });
+
+    // 新增
+    $('#btn-add').click(function () {
+        var rows = $('#data-table').bootstrapTable('getSelections');
+        if (rows.length == 0) {
+            layer.alert("请选择上级菜单!", {icon: 2, offset: '0px'})
+        } else {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '460px'],
+                content: add_url + '?parentId=' + rows[0].menuId
+            });
+        }
+    });
+    // 修改
+    $('#btn-update').click(function () {
+        var rows = $('#data-table').bootstrapTable('getSelections');
+        if (rows.length == 0) {
+            layer.alert("请选择数据行!", {icon: 2, offset: '0px'})
+        } else {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '460px'],
+                content: update_url + '?id=' + rows[0].menuId
+            });
+        }
+    });
+
+    // 删除
+    $('#btn-del').click(function () {
+        // 获取删除数据的ID
+        var rows = $('#data-table').bootstrapTable('getSelections');
+        if (rows.length == 0) {
+            //0.感叹号 1.对号 2.叉号 3.问号 4.清理 5.难过  6.高兴 7.感叹号
+            layer.alert("请选择数据行!", {icon: 2, offset: '0px'})
+        } else {
+            layer.confirm("确认删除?", {icon: 3, offset: '0px'}, function () {
+                var param = '?ids=';
+                for (var i = 0; i < rows.length; i++) {
+                    param += rows[i].userId + ','
+                }
+                param = param.substr(0, param.length - 1);
+                $.ajax({
+                    url: del_url + param,
+                    type: 'get',
+                    success: function (response) {
+                        if (response.code == 0) {
+                            layer.msg(response.msg, {icon: 1, time: 1000}, function () {
+                                dataTable.bootstrapTable('refresh', {
+                                    url: list_url
+                                });
+                            });
+                        } else {
+                            layer.alert(response.msg);
+                        }
+                    }
+                })
+            })
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-admin 后台管理系统 - 角色管理</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/plugin/bootstrap-table/bootstrap-table.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper wrapper-content">
+    <div class="ibox">
+        <div class="ibox-content">
+            <div class="row ibox-toolbar">
+                <div class="btn-toolbar col-sm-4">
+                    <div class="btn-group">
+                        <button id="btn-add" type="button" class="btn btn-outline btn-default">
+                            <i class="glyphicon glyphicon-plus"></i> 新增
+                        </button>
+
+                        <button id="btn-update" type="button" class="btn btn-outline btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i> 修改
+                        </button>
+
+                        <button id="btn-del" type="button" class="btn btn-outline btn-default">
+                            <i class="glyphicon glyphicon-trash"></i> 删除
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button id="btn-resource" type="button" class="btn btn-outline btn-default">
+                            <i class="glyphicon glyphicon-plus-sign"></i> 分配资源
+                        </button>
+                    </div>
+                </div>
+                <form class="form-inline col-sm-8" onsubmit="return false">
+                    <div class="text-right">
+                        <div class="form-group">
+                            <input name="roleName" id="roleName" class="form-control" type="text"
+                                   placeholder="请输入角色名称">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline btn-default" id="btn-search" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table id="data-table"></table>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js"></script>
+<script src="/plugin/layer/layer.js"></script>
+
+<script src="/plugin/bootstrap-table/bootstrap-table.js"></script>
+<script src="/plugin/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+<script>
+    var list_url = 'data/role_list.json';
+    var add_url = 'role_add.html';
+    var update_url = 'role_update.html';
+    var del_url = 'data/success.json';
+    var role_resource_add_url = 'role_resource_add.html';
+
+    // 初始化表格数据
+    var dataTable = $('#data-table').bootstrapTable({
+        url: list_url,         //  请求后台的URL
+        method: "get",                      //  请求方式
+        uniqueId: "roleId",                 //  每一行的唯一标识，一般为主键列
+        cache: false,                       // 设置为 false 禁用 AJAX 数据缓存， 默认为true
+        pagination: true,                   //  是否显示分页
+        sidePagination: "server",           //  分页方式：client客户端分页，server服务端分页
+        pageSize: 8,                        //  每页的记录行数
+        queryParamsType: '',
+        queryParams: function (param) {
+            return {
+                pageNum: param.pageNumber,
+                pageSize: param.pageSize,
+                roleName: $("#roleName").val()
+            }
+        },
+        columns: [{
+            checkbox: true
+        }, {
+            field: 'roleName',
+            title: '角色名称'
+        }, {
+            field: 'remark',
+            title: '角色描述'
+        }]
+    });
+
+    // 查询
+    $('#btn-search').click(function () {
+        dataTable.bootstrapTable('refresh', {
+            url: list_url
+        });
+    });
+
+    // 新增
+    $('#btn-add').click(function () {
+        layer.open({
+            type: 2,
+            title: false,
+            area: ['800px', '300px'],
+            content: add_url
+        });
+    });
+    // 修改
+    $('#btn-update').click(function () {
+        var rows = $('#data-table').bootstrapTable('getSelections');
+        if (rows.length == 0) {
+            layer.alert("请选择数据行!", {icon: 2, offset: '0px'})
+        } else if (rows.length != 1) {
+            layer.alert("一次只能修改一条数据!", {icon: 2, offset: '0px'})
+        } else {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '300px'],
+                content: update_url + '?roleId=' + rows[0].roleId
+            });
+        }
+    });
+
+    // 删除
+    $('#btn-del').click(function () {
+        // 获取删除数据的ID
+        var rows = $('#data-table').bootstrapTable('getSelections');
+        if (rows.length == 0) {
+            //0.感叹号 1.对号 2.叉号 3.问号 4.清理 5.难过  6.高兴 7.感叹号
+            layer.alert("请选择数据行!", {icon: 2, offset: '0px'})
+        } else {
+            layer.confirm("确认删除?", {icon: 3, offset: '0px'}, function () {
+                var param = '?ids=';
+                for (var i = 0; i < rows.length; i++) {
+                    param += rows[i].roleId + ','
+                }
+                param = param.substr(0, param.length - 1);
+                $.ajax({
+                    url: del_url + param,
+                    type: 'get',
+                    success: function (response) {
+                        if (response.code == 0) {
+                            layer.msg(response.msg, {icon: 1, time: 1000}, function () {
+                                dataTable.bootstrapTable('refresh', {
+                                    url: list_url
+                                });
+                            });
+                        } else {
+                            layer.alert(response.msg);
+                        }
+                    }
+                })
+            })
+        }
+    });
+
+    // 分配角色
+    $('#btn-resource').click(function () {
+        var rows = $('#data-table').bootstrapTable('getSelections');
+        if (rows.length == 0) {
+            layer.alert("请选择数据行!", {icon: 2, offset: '0px'})
+        } else if (rows.length != 1) {
+            layer.alert("一次只能修改一条数据!", {icon: 2, offset: '0px'})
+        } else {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '460px'],
+                content: role_resource_add_url + '?roleId=' + rows[0].roleId
+            });
+        }
+    });
+</script>
+</body>
+</html>
