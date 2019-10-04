@@ -2,6 +2,9 @@
 
 此项目用的是springboot+mybstis开发的一款博客 ，喜欢的话请点star
 
+###运行地址：
+http://blog.lqcnb.cn
+
 ### 开发环境 ：
 
 IDEA
