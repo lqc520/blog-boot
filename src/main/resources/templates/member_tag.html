@@ -50,6 +50,7 @@
                     if (response.code == 0) { //表示成功
                         layer.msg(response.msg, {icon: 1, time: 1000}, function () {
                             window.location.href = 'getTag?memberID='+$('#mid').val();
+                            window.location.reload();
                         });
                     } else {
                         layer.alert(response.msg);

@@ -24,7 +24,7 @@ public class CommonController {
 //        String url = servletPath.replace(".html", "");
 //        return url;
 //    }
-    @RequestMapping({"member_column_add.html","member_tag_add.html","detail.html","member_article_update.html","register.html","login.html","index.html","member_info.html","member_password.html","member_column.html","member_index.html","member_article.html","member_article_list.html","member_article_add.html","member_article_add2.html","blog_article_detail.html","blog_index.html","common_nav.html"})
+    @RequestMapping({"member_column_add.html","member_tag_add.html","detail.html","member_article_update.html","register.html","login.html","member_info.html","member_password.html","member_column.html","member_index.html","member_article.html","member_article_list.html","member_article_add.html","member_article_add2.html","blog_article_detail.html","blog_index.html","common_nav.html"})
     public String doForward(HttpServletRequest request){
         String servletPath = request.getServletPath();
         String url = servletPath.replace(".html", "");
@@ -37,6 +37,7 @@ public class CommonController {
         session.removeAttribute("member");
         return "login";
     }
+
    @RequestMapping("/admin/*")
    public String doForwardAdmin(HttpServletRequest request){
         String servletPath = request.getServletPath();

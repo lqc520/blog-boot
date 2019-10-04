@@ -54,12 +54,11 @@
     $("body").css("background-image", "url(img/logo_bg.jpg)");
 
     var codeFlag = true;
-    var cPassword = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+    var checkPassword  = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
 
-
-    $heckMobile = /^1[34578]\d{9}$/;
+    checkMobile = /^1[34578]\d{9}$/;
     //由数字和字母组成，并且要同时含有数字和字母，且长度要在8-16位之间
-    var check=('.getCode').click(function () {
+    var check=$('.getCode').click(function () {
         if (codeFlag) {
             var mobile = $('input[name=mobile]').val();
 

@@ -60,7 +60,7 @@
                                 <td>${var.visit!'0'}</td>
                                 <td>${var.createTime?string('yyyy-MM-dd hh:mm:ss')}</td>
                                 <td>
-                                    <a href="" id="update" aid="${var.id}" class="btn btn-warning btn-xs">
+                                    <a href=""  aid="${var.id}" class="btn btn-warning btn-xs update">
                                         <span class="glyphicon glyphicon-pencil"></span> 修改
                                     </a>
                                     <a href="" class="btn btn-danger btn-xs artDel" did="${var.id}">
@@ -84,7 +84,7 @@
                // 跳出iframe框架
                 window.top.location="toAddArticle";
             });
-            $('#update').click(function () {
+            $('.update').click(function () {
                 // 跳出iframe框架
                 var id=$(this).attr("aid");
                 window.top.location="toUpdate?id="+id;
@@ -99,6 +99,7 @@
                         if (response.code == 0) { //表示成功
                             layer.msg(response.msg, {icon: 1, time: 1000}, function () {
                                 window.location.href = 'toMemberArticle?memberID=${member.id}';
+                                window.location.reload();
                             });
                         } else {
                             layer.alert(response.msg);

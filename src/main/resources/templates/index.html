@@ -92,16 +92,10 @@
                         <h3 class="panel-title">热门文章</h3>
                     </div>
                     <div class="list-group">
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2019-7-09 ">Linux常用命令</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-11-08 ">Centos下搭建php环境</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-07-03 ">Linux下部署php+apache</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2019-01-28 ">经典的PHP加密解密算法</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-10-09 ">JavaScript将base64图片转换成formData</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-10-09 ">JS上传图片实时预览</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-04-11 ">jQuery获取随机数</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2017-10-09 ">JavaScript获取随机字符串</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-04-11 ">CSS超出部分显示省略号</a>
-                        <a href="" target="_blank" class="list-group-item" title="发布时间：2018-04-28 ">php常用的字符串相关函数</a>
+                        <#list randArticle as hot>
+
+                            <a href="/toDetail?id=${hot.id}" target="_blank" class="list-group-item" title="发布时间： "><span class="glyphicon glyphicon-menu-right"> </span> &nbsp ${hot.title} </a>
+                        </#list>
                     </div>
                 </div>
             </div>

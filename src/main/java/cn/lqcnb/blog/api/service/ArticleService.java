@@ -33,6 +33,10 @@ public class ArticleService extends AbstractService<Article> {
         return articleMapper.getArticlesByTitle(title);
     }
 
+    public List<Article> getRandArticle(int limit){
+        return articleMapper.getRandArticle(limit);
+    }
+
 
 
 }
